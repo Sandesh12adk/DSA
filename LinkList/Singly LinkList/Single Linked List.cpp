@@ -109,10 +109,25 @@ struct Node* addAtSpecific(struct Node* head, int position) {
 	  		ptr=ptr->link;
 		  }
 		  free(ptr);
-		  ptr= NULL;
-		  temp->link= NULL;
+		   ptr= NULL;
+		 temp->link= NULL;
 		  	printf("Last Node deleted\n");
 	}
+	//Deleting the Node at the specific position
+struct Node* deleteAtSpec(struct Node* head, int position){
+	int count= 1;
+	struct Node *temp, *ptr;
+	ptr= head;
+	while(count<position){
+		count++;
+	    temp= ptr;
+		ptr=ptr->link;
+	}
+	temp->link= ptr->link;
+	free(ptr);
+	return head;
+}
+
 	//Deleting All the Nodes
 	struct Node* deleteAllNodes(struct Node* head){
 		struct Node *temp, *ptr;
@@ -127,6 +142,16 @@ struct Node* addAtSpecific(struct Node* head, int position) {
 			printf("Entire List has deleted\n");
 			return NULL;
 	}
+	void display(struct Node* head){
+	struct Node *ptr= head;
+	printf("LinkedList:");
+	while(ptr!=NULL){
+		printf("%d->",ptr->a);
+		ptr=ptr->link;
+	}
+	printf("NULL");
+	printf("\n");
+}
 int main(){
 	// Creating the first Node
 	struct Node* head;
@@ -155,6 +180,7 @@ int main(){
     head= addAtBeg(head);
     countNodes(head);
     data(head);
+     display(head);
     addAtSpecific(head,5);
     countNodes(head);
     data(head);
@@ -164,6 +190,7 @@ int main(){
       deleteLastNode(head);
        countNodes(head);
         data(head);
-         head=deleteAllNodes(head);
+       
+
           return 0;
 }
